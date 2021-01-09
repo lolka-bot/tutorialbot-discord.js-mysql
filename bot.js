@@ -6,11 +6,15 @@ let prefix = config.prefix // Ищем в файле botconfig.json префик
 // Делаем после запуска:
 bot.on("ready", () => {
   console.log(`Запустился бот ${bot.user.tag}!`);
+  //Создаем приглашение и отправляем его в консоль
+  bot.generateInvite(["ADMINISTRATOR"]).then(link => {
+     console.log(link);
+  });
 });
 // Что делаем если пользователь отправил сообщение:
 bot.on("message", message => {
   if (message.content === '${prefix}ping') {
-    message.reply('Pong!');
+    message.channel.send('Pong!');
   }
 });
 
