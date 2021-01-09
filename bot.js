@@ -20,6 +20,7 @@ bot.on("message", message => {
       let embed = new Discord.MessageEmbed()
         .setTitle(`Название`)
         .setDescription(`Описание`)
+        .setColor(`Цвет в HEX`)
         .setAuthor(`Автор`)
         .setUrl(`Здесь ссылка`)
         .addField(`Название поля`, `Содержание поля`)
