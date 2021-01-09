@@ -13,8 +13,20 @@ bot.on("ready", () => {
 });
 // Что делаем если пользователь отправил сообщение:
 bot.on("message", message => {
-  if (message.content === '${prefix}ping') {
+  if (message.content === `${prefix}ping`) {
     message.channel.send('Pong!');
+  }
+  if (message.content === `${prefix}examplembed`) {
+      let embed = new Discord.MessageEmbed()
+        .setTitle(`Название`)
+        .setDescription(`Описание`)
+        .setAuthor(`Автор`)
+        .setUrl(`Здесь ссылка`)
+        .addField(`Название поля`, `Содержание поля`)
+        .setThumbnail(message.author.displayAvatarURL()) // Аватарка
+        .setTimestamp() // Указываем время
+        .setFooter(`Подпись снизу`, `Аватарка`)
+      message.channel.send(embed)
   }
 });
 
