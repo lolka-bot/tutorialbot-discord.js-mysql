@@ -2,7 +2,7 @@ const Discord = require("discord.js"); // Подключаем модуль D.JS
 
 const bot = new Discord.Client(); // Создаем нового клиента
 
-bot.commands = new Discord.Collection(); // для работы обработчика команд
+// bot.commands = new Discord.Collection(); // для работы обработчика команд
 
 let config = require("./botconfig.json"); // Подключаем файл с настройкой бота
 
@@ -14,17 +14,17 @@ var mysql = require('mysql'); // Подключаем модуль mysql: Уст
 // Делаем данные для подключения
 
 // Command handler (Обработчик команд)
-fs.readdir('./commands/',(err,files)=>{
-    if(err) console.log(err);
-    let jsfiles = files.filter(f => f.split(".").pop() === "js");
-    if(jsfiles.length <=0) console.log("Нет комманд для загрузки!!");
-    console.log(`Загружено ${jsfiles.length} комманд`);
-    jsfiles.forEach((f,i) =>{
-        let props = require(`./cmds/${f}`);
-        console.log(`${i+1}.${f} Загружен!`);
-        bot.commands.set(props.help.name,props);
-    });
-});
+// fs.readdir('./commands/',(err,files)=>{
+//     if(err) console.log(err);
+//     let jsfiles = files.filter(f => f.split(".").pop() === "js");
+//     if(jsfiles.length <=0) console.log("Нет комманд для загрузки!!");
+//     console.log(`Загружено ${jsfiles.length} комманд`);
+//     jsfiles.forEach((f,i) =>{
+//         let props = require(`./cmds/${f}`);
+//         console.log(`${i+1}.${f} Загружен!`);
+//         bot.commands.set(props.help.name,props);
+//     });
+// });
 
 var con = mysql.createConnection({
   host:'127.0.0.1',
@@ -97,12 +97,12 @@ bot.on("message", async message => {
      return; // Если пользователь есть, ничего не делаем
      }
   })
-    let messageArray = message.content.split(" "); // содержкание сообщения
-    let command = messageArray[0].toLowerCase(); // для того, чтобы если сообщение написано верхнем регистром пример: !HELP, бот переводит его в нижний !help
-    let args = messageArray.slice(1); 
-    if(!message.content.startsWith(prefix)) return; // если сообщений не начинается с префикса, то ничего не делаем
-    let cmd = bot.commands.get(command.slice(prefix.length));
-    if(cmd) cmd.run(bot,message,args);
+//     let messageArray = message.content.split(" "); // содержкание сообщения
+//     let command = messageArray[0].toLowerCase(); // для того, чтобы если сообщение написано верхнем регистром пример: !HELP, бот переводит его в нижний !help
+//     let args = messageArray.slice(1); 
+//     if(!message.content.startsWith(prefix)) return; // если сообщений не начинается с префикса, то ничего не делаем
+//     let cmd = bot.commands.get(command.slice(prefix.length));
+//     if(cmd) cmd.run(bot,message,args);
 });
 
 bot.login(token); // Авторизовываем бота
